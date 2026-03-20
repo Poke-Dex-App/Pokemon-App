@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import PokemonCard from "./components/PokemonCard/PokemonCard";
 
 function App() {
 
@@ -26,9 +27,7 @@ function App() {
       <h1>POKEMON-APP</h1>
       {pokemonsArr.map((poke) => {
         return(
-          <div key={poke.id}>
-            <p>{poke.name}</p>
-          </div>
+          <PokemonCard key={poke.id} poke={poke}/>
         )
       })}
     </>
