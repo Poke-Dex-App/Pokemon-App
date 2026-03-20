@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
 
@@ -23,7 +26,11 @@ function App() {
 
   return (
     <>
-      <h1>POKEMON-APP</h1>
+
+      <Header/>
+
+      <NavBar/>
+
       {pokemonsArr.map((poke) => {
         return(
           <div key={poke.id}>
@@ -31,6 +38,8 @@ function App() {
           </div>
         )
       })}
+
+      <Footer/>
     </>
   )
 }
