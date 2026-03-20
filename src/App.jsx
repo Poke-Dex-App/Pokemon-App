@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import PokemonCard from "./components/PokemonCard/PokemonCard";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
@@ -33,9 +34,7 @@ function App() {
 
       {pokemonsArr.map((poke) => {
         return(
-          <div key={poke.id}>
-            <p>{poke.name}</p>
-          </div>
+          <PokemonCard key={poke.id} poke={poke}/>
         )
       })}
 
