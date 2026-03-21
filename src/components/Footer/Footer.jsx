@@ -5,7 +5,7 @@ function Footer () {
     return (
         <footer>
             <img src={logogh} />
-            <p>Armando & Bryan</p>
+            <p>Armando & Bryan 2026</p>
         </footer>
     )
 }

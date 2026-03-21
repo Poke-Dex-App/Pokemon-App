@@ -8,7 +8,7 @@ function NavBar() {
                 <h3>ABOUT</h3>
             </nav>  
             <div className="buscador">
-                <span><strong>Buscar: </strong></span><input className="buscador" placeholder="Buscar por nombre" /><span>🔍</span>
+                <span><strong>BUSCAR: </strong></span><input className="buscador" placeholder="Buscar por nombre" /><span>🔍</span>
             </div>
         </div>
 
