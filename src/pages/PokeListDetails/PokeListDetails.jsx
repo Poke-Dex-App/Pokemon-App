@@ -41,6 +41,14 @@ function PokeDetailsPage() {
         setMostar(false)
     }
 
+    const playSound = () => {
+        const audio = new Audio(pokemon.cry)
+
+        audio.play().catch(error => {
+            console.log("El navegador bloqueó el audio:", error);
+        });
+    }
+
     return (
         <>
             <h1>Poke Details</h1>
@@ -55,15 +63,15 @@ function PokeDetailsPage() {
                     <div className="specs">
                         <div>
                             <div>
-                                <p><strong>Peso: </strong></p>
+                                <p><strong>Peso:</strong></p>
                                 <p>{kg} Kg</p>
                             </div>
                             <div>
-                                <p><strong>Altura: </strong></p>
+                                <p><strong>Altura:</strong></p>
                                 <p>{meters} metros</p>
                             </div>
                             <div>
-                                <p>grito</p>
+                                <button onClick={() => {playSound()}}>Grito</button>
                             </div>
                         </div>
                         <div className="poke-abilities">
