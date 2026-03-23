@@ -66,7 +66,7 @@
 
 #moves{
     position: fixed;
-    top: 10%;
+    top: 1%;
     width: 50%;
     width: 50%;
     background-color: red;
@@ -75,7 +75,7 @@
 
 #moves-table{
     border-collapse: separate;
-    border-spacing: 15px;
+    border-spacing: 10px;
 }
 
 .float-buttons{
