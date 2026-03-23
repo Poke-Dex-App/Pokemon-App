@@ -2,22 +2,26 @@ import "./Header.css"
 import logo from "../../assets/Images/International_Pokémon_logo.svg"
 import NavBar from "../NavBar/NavBar"
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu"
+import SearchBar from "../SearchBar/SearchBar"
+import { Link } from "react-router-dom"
 
-function Header() {
+function Header(props) {
+
     return (
         <header>
-            
+
             <NavBar />
 
             <HamburgerMenu />
 
-            <div>
-                <img className="logo" src={logo} />
-            </div>
+            <Link to={"/"}>
+                <div>
+                    <img className="logo" src={logo} />
+                </div>
+            </Link>
 
-            <div className="buscador">
-                <input placeholder="Buscar por nombre" /><span>🔍</span>
-            </div>
+            <SearchBar pokemonsArr={props.pokemonsArr} setPokemons={props.setPokemons} />
+
         </header>
     )
 }

@@ -48,10 +48,10 @@
 /* MENÚ FULLSCREEN */
 .menuppal {
   position: fixed;
-  top: 0;
+  top: -40px;
   left: 0;
   width: 100%;
-  height: 25%;
+  height: 36%;
   background-color: #BF4B4B;
   transform: translateY(-100%);
   transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
@@ -77,9 +77,10 @@
   list-style: none;
   text-align: center;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 3em;
   font-weight: bold;
+
 }
 
 /* LINKS */
@@ -87,6 +88,7 @@
   text-decoration: none;
   color: white;
   transition: color 0.2s ease;
+  margin: 0;
 }
 
 .menuppal ul li a:hover {
@@ -102,6 +104,10 @@
 
 @media (min-width: 768px) {
   .hamburger{
+    display: none;
+  }
+
+  .menuppal{
     display: none;
   }
 }
