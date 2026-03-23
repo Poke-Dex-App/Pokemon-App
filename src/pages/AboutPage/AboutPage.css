@@ -1,0 +1,8 @@
+.about{
+    text-align: left;
+    padding: 40px;
+}
+
+.about>h2, .about>h1 {
+    color: #BF4B4B;
+}
