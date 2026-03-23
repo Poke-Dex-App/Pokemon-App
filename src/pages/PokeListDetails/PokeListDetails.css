@@ -1,0 +1,96 @@
+#poke-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.poke-img{
+    padding: 20px 60px;
+    border: 1px solid black;
+    margin: 20px;
+    height: 20%;
+}
+
+.poke-info{
+    padding: 20px 60px;
+    border: 1px solid black;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.types{
+    display: flex;
+}
+
+.types p{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.specs{
+    border: 1px solid black;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.poke-abilities{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ability{
+    border: 1px solid black;
+    padding: 5px;
+    width: 70%;
+}
+
+.poke-stats{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.sprites{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+
+#moves{
+    position: fixed;
+    top: 10%;
+    width: 50%;
+    width: 50%;
+    background-color: red;
+    padding: 0 30px 30px 30px;
+}
+
+#moves-table{
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
+.float-buttons{
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+}
+
+#edit{
+    right: 5%;
+}
+
+@media (max-width: 800px) {
+
+    #poke-container{
+        flex-direction: column;
+    }
+}
