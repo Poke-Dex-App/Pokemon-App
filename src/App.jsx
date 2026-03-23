@@ -15,12 +15,11 @@ function App() {
       .get('https://pokemon-app-ca105-default-rtdb.europe-west1.firebasedatabase.app/resource.json')
       .then((pokemon) => {
         setPokemons(pokemon.data)
-        console.log(pokemon.data)
       })
       .catch((error) => {
         console.log(error)
       })
-  })
+  }, [])
 
 
 
