@@ -33,7 +33,10 @@ function App() {
 
       <Routes>
         <Route path="/"  element={<PokeListPage pokemonsArr={pokemonsArr}></PokeListPage>}/>
+        <Route path="/about"/>
+        <Route path="/contact"/>
         <Route path="/pokemons/:pokeId" element={<PokeDetailsPage></PokeDetailsPage>}/>
+        <Route path="*" element/>
       </Routes>
 
       <Footer/>

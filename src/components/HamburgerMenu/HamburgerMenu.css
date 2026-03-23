@@ -1,0 +1,107 @@
+/* BOTÓN HAMBURGUESA */
+.hamburger {
+  background-color: transparent;
+  height: 30px;
+  left: 50;
+  width: 30px;
+  padding: 10px;
+  z-index: 1002;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+  display: flex;
+  flex-direction: column;
+}
+
+/* LÍNEAS */
+._layer {
+  background: white;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  width: 28px;
+  height: 4px;
+  transition: all 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+}
+
+/* HOVER */
+.hamburger:hover .-top {
+  transform: translateY(-3px);
+}
+
+.hamburger:hover .-bottom {
+  transform: translateY(3px);
+}
+
+/* ESTADO ACTIVO (X) */
+.hamburger.is-active .-top {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.is-active .-mid {
+  opacity: 0;
+}
+
+.hamburger.is-active .-bottom {
+  transform: translateY(-9px) rotate(135deg);
+}
+
+/* MENÚ FULLSCREEN */
+.menuppal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background-color: #BF4B4B;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+/* CUANDO ESTÁ ACTIVO */
+.menuppal.is_active {
+  transform: translateY(0);
+}
+
+/* LISTA */
+.menuppal ul {
+  padding: 0;
+  margin: 0;
+}
+
+.menuppal ul li {
+  list-style: none;
+  text-align: center;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+  line-height: 3em;
+  font-weight: bold;
+}
+
+/* LINKS */
+.menuppal ul li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.menuppal ul li a:hover {
+  color: #e74c3c;
+}
+
+
+@media (max-width: 767px){
+  .hamburger{
+    margin-left: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hamburger{
+    display: none;
+  }
+}
