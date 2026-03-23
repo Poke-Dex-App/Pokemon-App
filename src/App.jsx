@@ -10,21 +10,19 @@ function App() {
 
   const [pokemons, setPokemons] = useState({})
 
-  const pokemonsArr = Object.keys(pokemons).map((id) => ({
-    id,
-    ...pokemons[id],
-  }));
-
   useEffect(() => {
     axios
       .get('https://pokemon-app-ca105-default-rtdb.europe-west1.firebasedatabase.app/resource.json')
       .then((pokemon) => {
         setPokemons(pokemon.data)
+        console.log(pokemon.data)
       })
       .catch((error) => {
         console.log(error)
       })
   })
+
+
 
   return (
     <>
@@ -32,7 +30,7 @@ function App() {
       <Header/>
 
       <Routes>
-        <Route path="/"  element={<PokeListPage pokemonsArr={pokemonsArr}></PokeListPage>}/>
+        <Route path="/"  element={<PokeListPage pokemonsArr={pokemons}></PokeListPage>}/>
         <Route path="/about"/>
         <Route path="/contact"/>
         <Route path="/pokemons/:pokeId" element={<PokeDetailsPage></PokeDetailsPage>}/>
