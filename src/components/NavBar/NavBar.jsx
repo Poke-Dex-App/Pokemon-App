@@ -6,10 +6,8 @@ function NavBar() {
             <nav>
                 <h3>HOME</h3>
                 <h3>ABOUT</h3>
+                <h3>CONTACT</h3>
             </nav>  
-            <div className="buscador">
-                <span><strong>BUSCAR: </strong></span><input className="buscador" placeholder="Buscar por nombre" /><span>🔍</span>
-            </div>
         </div>
 
     )

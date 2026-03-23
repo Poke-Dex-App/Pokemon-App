@@ -2,13 +2,44 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #BD0706;
+    background-color: #BF4B4B;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    justify-content: space-evenly;
+    height: 80px;
 }
 
-.logo{
-    height: 50px
+.logo {
+    height: 50px;
+    margin-right: 100px;
 }
+
+
+
+.buscador {
+    margin-right: 10px;
+    display: flex;
+}
+
+
+@media (max-width: 767px){
+    header{
+        justify-content: space-between;
+    }
+
+    .logo{
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .buscador{
+        margin-right: 50px;
+    }
+    
+    .logo{
+        margin-right: 50px
+    }
+}
+

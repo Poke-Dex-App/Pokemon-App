@@ -38,3 +38,18 @@ a {
 .fire{background-color: lightcoral;}
 .poison{background-color: rgb(175, 77, 175);}
 .flying{background-color: rgb(167, 227, 227);}
+
+
+@media (max-width: 767px) {
+
+    .poke-card{
+        width: 70%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .poke-card{
+        width: 30%;
+    }
+}
