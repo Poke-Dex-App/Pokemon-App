@@ -3,8 +3,6 @@ import "./PokelistPage.css"
 
 
 function PokeListPage(props) {
-
-
     return (
         <div className="pokemons-list-container">
             {props.pokemonsArr &&

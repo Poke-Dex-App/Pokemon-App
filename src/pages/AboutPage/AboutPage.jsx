@@ -1,6 +1,6 @@
 import "./AboutPage.css"
 
-function About() {
+function AboutPage() {
   return (
     <div className="about">
       <h1>POKEMON APP</h1>
@@ -64,4 +64,4 @@ function About() {
   );
 }
 
-export default About
+export default AboutPage
