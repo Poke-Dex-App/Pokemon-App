@@ -15,9 +15,6 @@ function SearchBar(props) {
             return poke.name.toLowerCase().includes(value)
         })
         
-
-
-
         props.setPokemons(arrayFilteredBySearch)
     }
 

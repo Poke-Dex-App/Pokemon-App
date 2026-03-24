@@ -26,6 +26,8 @@ function PokeDetailsPage() {
         getPokemon()
     }, [pokeId])
 
+    console.log(pokemon)
+
     if (!pokemon) {
         return <p>Cargando datos del Pokémon...</p>;
     }
@@ -94,7 +96,7 @@ function PokeDetailsPage() {
                         })}
                     </div>
                     <h1>Estadísticas</h1>
-                    <div className="poke-stats">
+                    {/* <div className="poke-stats">
                         <div>
                             <h2>Estadísticas Base</h2>
                             <p><strong>PS: </strong>{pokemon.stats.base_stats.hp}</p>
@@ -113,7 +115,7 @@ function PokeDetailsPage() {
                             <p><strong>Desfensa Esp.: </strong>{pokemon.stats.max_stats.special_defense}</p>
                             <p><strong>Velocidad: </strong>{pokemon.stats.max_stats.speed}</p>
                         </div>
-                    </div>
+                    </div> */}
                     {pokemon.prevolutions &&
                         <>
                             <h1>Prevoluciones</h1>
