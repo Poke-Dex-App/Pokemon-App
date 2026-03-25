@@ -1,97 +1,34 @@
-import { useState } from "react"
-import "./AddPokemonPage.css"
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
 import axios from "axios"
+import { useParams, useNavigate } from "react-router-dom"
 
-function AddPokemonPage({pokemonsArr, getAllPokemons}) {
+function EditPage({pokemonsArr, getAllPokemons}) {
 
     const BASE_URL = import.meta.env.VITE_BASE_URL;
     const navigate = useNavigate()
+    const {pokeId} = useParams()
 
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [abilities, setAbilities] = useState([])
-    const [imagen, setImagen] = useState("")
-    const [types, setTypes] = useState([])
-    const [weight, setWeight] = useState(0)
-    const [height, setHeight] = useState(0)
-    const [stats, setStats] = useState("")
-    const [weaknesses, setWeaknesses] = useState([])
-    const [moves, setMoves] = useState([])
+    const [pokemon, setPokemon] = useState(null)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-
-        const pokeIds = pokemonsArr.map((pokeObj) => {
-            return pokeObj.id;
-        })
-        console.log(pokeIds)
-        const maxId = Math.max(...pokeIds)
-        console.log(maxId)
-        const nextId = maxId + 1
-
-
-        const newPokemon = {
-            name: name,
-            description: description,
-            abilities: abilities,
-            sprites: {
-                front: imagen
-            },
-            types: types,
-            weight: weight,
-            height: height,
-            stats: stats,
-            weaknesses: weaknesses,
-            moves: moves,
-            id: String(nextId)
-        }
-
+    const getPokemon = () => {
         axios
-            .post(`${BASE_URL}.json`, newPokemon)
-            .then(() => {
-                getAllPokemons()
-                navigate("/")
+            .get(`${BASE_URL}.json?orderBy="id"&equalTo="${pokeId}"`)
+            .then((poke) => {
+                const elPokemon = Object.values(poke.data)[0];
+                setPokemon(elPokemon)
             })
-            .catch((error) => {
-                console.log(error)
-            })
-
-
+            .catch((error) => console.log(error))
     }
 
-    const handleType = (e) => {
-        const value = e.target.value
-        setTypes([...types, value])
-    }
+    useEffect(() => {
+        getPokemon()
+    }, [pokeId])
 
-    const handleWeaknesses = (e) => {
-        const value = e.target.value
-        setWeaknesses([...weaknesses, value])
-    }
-
-    const handleAbilities = (e) => {
-        const value = e.target.value
-
-        const selectedAbility = unicAbilities.find(ability => ability.description === value);
-
-        setAbilities([...abilities, selectedAbility])
-    }
-
-    const handMoves = (e) => {
-        const value = e.target.value
-
-        const selectedMove = unicMoves.find(move => move.description === value);
-
-        setMoves([...moves, selectedMove])
-    }
-
-    const pokeAbilities = pokemonsArr.map((poke) => {
+    const abilities = pokemonsArr.map((poke) => {
         return poke.abilities
     })
 
-    const allAbilities = [].concat(...pokeAbilities);
+    const allAbilities = [].concat(...abilities);
 
     const unicAbilities = allAbilities.filter((ability, i, array) => {
         const firstI = array.findIndex((index) => index.description === ability.description)
@@ -135,8 +72,76 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
         return i === firstI
     })
 
-    return (
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setPokemon({
+            ...pokemon,
+            [name]: value
+        });
+    };
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        axios
+            .get(`${BASE_URL}.json?orderBy="id"&equalTo="${pokeId}"`)
+            .then((response) => {
+                const key = Object.keys(response.data)
+
+                const firebaseKey = key[0]
+
+                const putURL = `${BASE_URL}/${firebaseKey}.json`
+
+                return axios.put(putURL, pokemon)
+            })
+            .then(() => {
+                getAllPokemons()
+                navigate("/")
+            })
+            .catch((error) => console.log(error))
+    }
+
+    const handleAbilities = (e) => {
+        const fullAbility = unicAbilities.find((ability) => ability.description === e.target.value)
+
+        setPokemon({
+            ...pokemon,
+            abilities:[fullAbility]
+        })
+    }
+
+    const handleMoves = (e) => {
+        const fullMove = unicMoves.find((move) => move.description === e.target.value)
+        
+        setPokemon({
+            ...pokemon,
+            moves:[fullMove]
+        })
+    }
+
+    const handleType = (e) => {
+        const value = e.target.value
+        
+        setPokemon({
+            ...pokemon,
+            types:[value]
+        })
+    }
+
+    const handleWeaknesses = (e) => {
+        const value = e.target.value
+        
+        setPokemon({
+            ...pokemon,
+            weaknesses:[value]
+        })
+    }
+
+    if (!pokemon) {
+        return <p>Cargando datos del Pokémon...</p>;
+    }
+
+    return (
         <>
             <form onSubmit={handleSubmit}>
 
@@ -145,8 +150,8 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                     <input
                         type="text"
                         name="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={pokemon.name}
+                        onChange={handleChange}
                     />
                 </label>
 
@@ -155,8 +160,8 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                     <textarea
                         type="text"
                         name="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        value={pokemon.description}
+                        onChange={handleChange}
                     />
                 </label>
 
@@ -166,21 +171,10 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                         name="abilities"
                         onChange={handleAbilities}
                     >
-                        <option>habilidad</option>
                         {unicAbilities.map((ability) => {
                             return <option value={ability.description}>{ability.description}</option>
                         })}
                     </select>
-                </label>
-
-                <label>
-                    Imagen:
-                    <input
-                        type="url"
-                        name="imagen"
-                        value={imagen}
-                        onChange={(e) => setImagen(e.target.value)}
-                    />
                 </label>
 
                 <label>
@@ -189,7 +183,6 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                         name="type"
                         onChange={handleType}
                     >
-                        <option>tipo</option>
                         {unicTypes.map((type) => {
                             return <option value={type}>{type}</option>
                         })}
@@ -201,8 +194,8 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                     <input
                         type="number"
                         name="weight"
-                        value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
+                        value={pokemon.weight}
+                        onChange={handleChange}
                     />
                 </label>
 
@@ -211,8 +204,8 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                     <input
                         type="number"
                         name="height"
-                        value={height}
-                        onChange={(e) => setHeight(e.target.value)}
+                        value={pokemon.height}
+                        onChange={handleChange}
                     />
                 </label>
 
@@ -222,7 +215,6 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                         name="weaknesses"
                         onChange={handleWeaknesses}
                     >
-                        <option>debilidad</option>
                         {unicWeaknesses.map((weaknes) => {
                             return <option value={weaknes}>{weaknes}</option>
                         })}
@@ -233,23 +225,19 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
                     Movimientos:
                     <select
                         name="moves"
-                        onChange={handMoves}
+                        onChange={handleMoves}
                     >
-                        <option>movimiento</option>
                         {unicMoves.map((move) => {
                             return <option value={move.description}>{move.description}</option>
                         })}
                     </select>
                 </label>
 
-                <button>CREATE</button>
-
-
-
+                <button>UPGRADE</button>
             </form>
 
         </>
     )
 }
 
-export default AddPokemonPage
+export default EditPage

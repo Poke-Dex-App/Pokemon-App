@@ -1,9 +1,12 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import './PokeListDetails.css'
 
-function PokeDetailsPage() {
+function PokeDetailsPage({getAllPokemons}) {
+
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
+    const navigate = useNavigate()
 
     const [pokemon, setPokemon] = useState(null)
     const [mostar, setMostar] = useState(false)
@@ -26,8 +29,6 @@ function PokeDetailsPage() {
         getPokemon()
     }, [pokeId])
 
-    console.log(pokemon)
-
     if (!pokemon) {
         return <p>Cargando datos del Pokémon...</p>;
     }
@@ -49,6 +50,25 @@ function PokeDetailsPage() {
         audio.play().catch(error => {
             console.log("El navegador bloqueó el audio:", error);
         });
+    }
+
+    const onDelete = () => {
+        axios
+            .get(`${BASE_URL}.json?orderBy="id"&equalTo="${pokeId}"`)
+            .then((response) => {
+                const key = Object.keys(response.data)
+
+                const firebaseKey = key[0]
+
+                const deleteURL = `${BASE_URL}/${firebaseKey}.json`
+
+                return axios.delete(deleteURL)
+            })
+            .then(() => {
+                getAllPokemons()
+                navigate("/")
+            })
+            .catch((error) => console.log(error))
     }
 
     return (
@@ -174,8 +194,8 @@ function PokeDetailsPage() {
                         <button onClick={() => {onHide()}}>Cerrar</button>
                     </div>
                 }
-                <button className="float-buttons" id="del">Borrar</button>
-                <button className="float-buttons" id="edit">Editar</button>
+                <button onClick={onDelete} className="float-buttons" id="del">Borrar</button>
+                <Link to={`/pokemons/edit/${pokeId}`}><button className="float-buttons" id="edit">Editar</button></Link>
             </div>
         </>
     )

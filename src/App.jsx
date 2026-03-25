@@ -26,8 +26,6 @@ function App() {
 
         }))
 
-        console.log(pokemon.data)
-
         setAllPokemons(data)
         setPokemons(data)
       })
@@ -50,7 +48,8 @@ function App() {
         <Route path="/" element={<PokeListPage pokemonsArr={pokemons}></PokeListPage>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/add" element={<AddPokemonPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
-        <Route path="/pokemons/:pokeId" element={<PokeDetailsPage></PokeDetailsPage>} />
+        <Route path="/pokemons/:pokeId" element={<PokeDetailsPage getAllPokemons={getAllPokemons}></PokeDetailsPage>} />
+        <Route path="/pokemons/edit/:pokeId" element={<EditPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
