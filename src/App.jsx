@@ -7,7 +7,7 @@ import PokeDetailsPage from "./pages/PokeListDetails/PokeListDetails";
 import NotFound from "./pages/NotFoundPage/NotFoundPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import AddPokemonPage from "./pages/AddPokemonPage/AddPokemonPage";
-import EditPage from "./pages/Temporal/EditPage";
+import EditPage from "./pages/EditPage/EditPage";
 import PokeListPage from "./pages/PokeListPage/PokeListPage"
 
 function App() {
