@@ -45,7 +45,7 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
             stats: stats,
             weaknesses: weaknesses,
             moves: moves,
-            id: nextId
+            id: String(nextId)
         }
 
         axios
