@@ -79,6 +79,8 @@ function PokeDetailsPage({getAllPokemons}) {
                     <img src={pokemon.sprites.front} />
                     <h2>{pokemon.name}</h2>
                     <button onClick={() => { onShow() }}>Ataques</button>
+                    <button onClick={onDelete} id="del">Borrar</button>
+                <Link to={`/pokemons/edit/${pokeId}`}><button id="edit">Editar</button></Link>
                 </div>
                 <div className="poke-info">
                     <p>{pokemon.description}</p>
@@ -194,8 +196,7 @@ function PokeDetailsPage({getAllPokemons}) {
                         <button onClick={() => {onHide()}}>Cerrar</button>
                     </div>
                 }
-                <button onClick={onDelete} className="float-buttons" id="del">Borrar</button>
-                <Link to={`/pokemons/edit/${pokeId}`}><button className="float-buttons" id="edit">Editar</button></Link>
+                
             </div>
         </>
     )
