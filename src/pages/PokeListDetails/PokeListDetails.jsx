@@ -10,6 +10,7 @@ function PokeDetailsPage({getAllPokemons}) {
 
     const [pokemon, setPokemon] = useState(null)
     const [mostar, setMostar] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false) 
 
     const { pokeId } = useParams()
 
@@ -79,8 +80,6 @@ function PokeDetailsPage({getAllPokemons}) {
                     <img src={pokemon.sprites.front} />
                     <h2>{pokemon.name}</h2>
                     <button onClick={() => { onShow() }}>Ataques</button>
-                    <button onClick={onDelete} id="del">Borrar</button>
-                <Link to={`/pokemons/edit/${pokeId}`}><button id="edit">Editar</button></Link>
                 </div>
                 <div className="poke-info">
                     <p>{pokemon.description}</p>
@@ -118,7 +117,7 @@ function PokeDetailsPage({getAllPokemons}) {
                         })}
                     </div>
                     <h1>Estadísticas</h1>
-                    {/* <div className="poke-stats">
+                    <div className="poke-stats">
                         <div>
                             <h2>Estadísticas Base</h2>
                             <p><strong>PS: </strong>{pokemon.stats.base_stats.hp}</p>
@@ -137,7 +136,7 @@ function PokeDetailsPage({getAllPokemons}) {
                             <p><strong>Desfensa Esp.: </strong>{pokemon.stats.max_stats.special_defense}</p>
                             <p><strong>Velocidad: </strong>{pokemon.stats.max_stats.speed}</p>
                         </div>
-                    </div> */}
+                    </div>
                     {pokemon.prevolutions &&
                         <>
                             <h1>Prevoluciones</h1>
@@ -196,7 +195,17 @@ function PokeDetailsPage({getAllPokemons}) {
                         <button onClick={() => {onHide()}}>Cerrar</button>
                     </div>
                 }
-                
+                <button onClick={() => {setDeleteModal(true)}} className="float-buttons" id="del">Borrar</button>
+                <Link to={`/pokemons/edit/${pokeId}`}><button className="float-buttons" id="edit">Editar</button></Link>
+                {deleteModal &&
+                    <div id="delete">
+                        <h2>Deseas eliminar este pokemon</h2>
+                        <div id="delete-buttons">
+                            <button onClick={onDelete}>Si</button>
+                            <button onClick={() => {setDeleteModal(false)}}>No</button>
+                        </div>
+                    </div>
+                }
             </div>
         </>
     )

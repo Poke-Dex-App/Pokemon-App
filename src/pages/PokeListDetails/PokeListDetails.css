@@ -88,6 +88,19 @@
 }
 
 
+#delete{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-bottom: 20px;
+}
+
 @media (max-width: 800px) {
 
     #poke-container{

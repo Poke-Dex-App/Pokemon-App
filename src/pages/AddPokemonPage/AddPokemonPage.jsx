@@ -3,7 +3,7 @@ import "./AddPokemonPage.css"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 
-function AddPokemonPage({pokemonsArr, getAllPokemons}) {
+function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
 
     const BASE_URL = import.meta.env.VITE_BASE_URL;
     const navigate = useNavigate()
@@ -31,6 +31,26 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
         console.log(maxId)
         const nextId = maxId + 1
 
+        const randomStat = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min).toString();
+
+        const baseStats = {
+            hp: randomStat(40, 100),
+            attack: randomStat(40, 100),
+            defense: randomStat(40, 100),
+            special_attack: randomStat(40, 100),
+            special_defense: randomStat(40, 100),
+            speed: randomStat(40, 100),
+        };
+
+        const maxStats = {
+            hp: randomStat(200, 300),
+            attack: randomStat(200, 300),
+            defense: randomStat(200, 300),
+            special_attack: randomStat(200, 300),
+            special_defense: randomStat(200, 300),
+            speed: randomStat(200, 300),
+        };
+
 
         const newPokemon = {
             name: name,
@@ -42,7 +62,10 @@ function AddPokemonPage({pokemonsArr, getAllPokemons}) {
             types: types,
             weight: weight,
             height: height,
-            stats: stats,
+            stats: {
+                base_stats: baseStats,
+                max_stats: maxStats
+            },
             weaknesses: weaknesses,
             moves: moves,
             id: String(nextId)
