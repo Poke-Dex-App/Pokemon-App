@@ -20,7 +20,7 @@ function HamburgerMenu() {
         <ul>
           <li><Link to="/" onClick={() => setActive(false)}>HOME  </Link></li>
           <li><Link to="/about" onClick={() => setActive(false)} >ABOUT</Link></li>
-          <li><Link to="/contact" onClick={() => setActive(false)}>CONTACT</Link></li>
+          <li><Link to="/add" onClick={() => setActive(false)}>ADD</Link></li>
         </ul>
       </nav>
     </>

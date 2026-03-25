@@ -8,15 +8,16 @@
 
 .poke-img{
     padding: 20px 60px;
-    border: 1px solid black;
+    border: 1px solid var(--border);
     margin: 20px;
     height: 20%;
     border-radius: 10px;
+    background-color: var(--bgcard)
 }
 
 .poke-info{
     padding: 20px 60px;
-    border: 1px solid black;
+    border: 1px solid var(--border);
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -35,9 +36,9 @@
 }
 
 .specs{
-    border: 1px solid black;
+    border: 1px solid var(--border);
     border-radius: 20px;
-    background-color: beige;
+    background-color: var(--bgcard);
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -86,15 +87,6 @@
     border-spacing: 10px;
 }
 
-.float-buttons{
-    position: fixed;
-    bottom: 10%;
-    right: 10%;
-}
-
-#edit{
-    right: 5%;
-}
 
 #delete{
     position: fixed;
