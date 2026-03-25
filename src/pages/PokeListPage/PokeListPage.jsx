@@ -1,5 +1,5 @@
 import PokemonCard from "../../components/PokemonCard/PokemonCard"
-import "./PokelistPage.css"
+import "./PokeListPage.css"
 
 
 function PokeListPage(props) {
