@@ -3,8 +3,6 @@ import axios from 'axios'
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import PokeListPage from "./pages/PokelistPage/PokelistPage";
-import PokeDetailsPage from "./pages/PokeListDetails/PokeListDetails";
 import NotFound from "./pages/NotFoundPage/NotFoundPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import AddPokemonPage from "./pages/AddPokemonPage/AddPokemonPage";
