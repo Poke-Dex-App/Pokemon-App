@@ -3,12 +3,11 @@ import axios from 'axios'
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import PokeListPage from "./pages/PokeListPage/PokeListPage";
 import PokeDetailsPage from "./pages/PokeListDetails/PokeListDetails";
 import NotFound from "./pages/NotFoundPage/NotFoundPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import AddPokemonPage from "./pages/AddPokemonPage/AddPokemonPage";
-import EditPage from "./pages/EditPAge/EditPAge";
+import PokeListPage from "./pages/PokeListPage/PokeListPage"
 
 function App() {
 
@@ -40,6 +39,7 @@ function App() {
   }, [])
 
   return (
+
     <>
 
       <Header pokemonsArr={allPokemons} setPokemons={setPokemons} />
@@ -59,3 +59,5 @@ function App() {
 }
 
 export default App
+
+
