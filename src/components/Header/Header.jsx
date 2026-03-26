@@ -4,8 +4,9 @@ import NavBar from "../NavBar/NavBar"
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu"
 import SearchBar from "../SearchBar/SearchBar"
 import { Link } from "react-router-dom"
+import ThemeToggle from "../ThemeToggle/ThemeToggle"
 
-function Header(props) {
+function Header() {
 
     return (
         <header>
@@ -20,7 +21,7 @@ function Header(props) {
                 </div>
             </Link>
 
-            <SearchBar pokemonsArr={props.pokemonsArr} setPokemons={props.setPokemons} />
+            <ThemeToggle/>
 
         </header>
     )

@@ -9,7 +9,6 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import AddPokemonPage from "./pages/AddPokemonPage/AddPokemonPage";
 import EditPage from "./pages/EditPage/EditPage";
 import PokeListPage from "./pages/PokeListPage/PokeListPage"
-import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 
 function App() {
 
@@ -45,10 +44,9 @@ function App() {
     <>
 
       <Header pokemonsArr={allPokemons} setPokemons={setPokemons} />
-      <ThemeToggle />
 
       <Routes>
-        <Route path="/" element={<PokeListPage pokemonsArr={pokemons}></PokeListPage>} />
+        <Route path="/" element={<PokeListPage pokemonsArr={pokemons} allPokemonsArr={allPokemons} setPokemons={setPokemons}></PokeListPage>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/add" element={<AddPokemonPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
         <Route path="/pokemons/:pokeId" element={<PokeDetailsPage getAllPokemons={getAllPokemons}></PokeDetailsPage>} />

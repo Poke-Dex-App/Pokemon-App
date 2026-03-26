@@ -2,11 +2,11 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #BF4B4B;
+    background-color: var(--bgmodal);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 80px;
+    height: 90px;
 }
 
 .logo {
@@ -30,6 +30,10 @@ header {
    
     .logo{
         margin-right: 50px
+    }
+
+    header{
+        justify-content: space-between;
     }
 }
 
