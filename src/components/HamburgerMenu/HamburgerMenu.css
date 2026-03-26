@@ -1,7 +1,6 @@
 /* BOTÓN HAMBURGUESA */
 .hamburger {
   background-color: transparent;
-  height: 30px;
   left: 50;
   width: 30px;
   padding: 10px;
@@ -51,7 +50,7 @@
   top: -40px;
   left: 0;
   width: 100%;
-  height: 36%;
+  height: 30%;
   background-color: #BF4B4B;
   transform: translateY(-100%);
   transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);

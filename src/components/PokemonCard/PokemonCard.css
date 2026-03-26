@@ -1,18 +1,19 @@
 .poke-card{
-    border: 1px solid black;
     box-sizing: border-box;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 5px 5px;
+    box-shadow: var(--boxshadow);
     transition: 0.3s;
 }
 
-.poke-card:hover{
-    cursor: pointer;
-    box-shadow: 7px 7px;
+.poke-card img {
+    width: 100px;
+    height: 100px;
 }
 
-a {
+
+
+.card {
     text-decoration: none;
     color: inherit;
     display: inline-block;
@@ -34,22 +35,51 @@ a {
     padding: 0 5px 0 5px;
 }
 
-.grass{background-color: lightgreen;}
-.fire{background-color: lightcoral;}
-.poison{background-color: rgb(175, 77, 175);}
-.flying{background-color: rgb(167, 227, 227);}
+.grass{background-color: #5FAF6A ;}
+.fire{background-color: #E07A5F;}
+.poison{background-color:#8B5FA8;}
+.flying{background-color: #7DA6D9;}
+.water{background-color: #4F8FC0 ;}
+.bug{background-color: #8FAF5F;}
+.normal{background-color:#A8A8A8 ;}
+.electric{background-color: #D9B44A;}
+.ground{background-color:#B08968 ;}
+.fairy{background-color: #D68FB3;}
+.ice { background-color: #7EC9D9; }
+.psychic { background-color: #D957A0; }
+.rock { background-color: #A8906E; }
+.steel { background-color: #8FA3B0; }
+.fighting { background-color: #C65A3A; }
+
+
+
+.grass.type-p { background-color: #4e8f58; }
+.fire.type-p { background-color: #c9654c; }
+.poison.type-p { background-color: #6f4c88; }
+.flying.type-p { background-color: #5f8fc2; }
+.water.type-p { background-color: #3e74a1; }
+.bug.type-p { background-color: #6f8f4a; }
+.normal.type-p { background-color: #8a8a8a; }
+.electric.type-p { background-color: #b8962f; }
+.ground.type-p { background-color: #8f6f52; }
+.fairy.type-p { background-color: #b76f95; }
+.ice.type-p { background-color: #5fa7b5; }
+.psychic.type-p { background-color: #a63f78; }
+.rock.type-p { background-color: #7a674f; }
+.steel.type-p { background-color: #6b7c88; }
+.fighting.type-p { background-color: #94432b; }
 
 
 @media (max-width: 767px) {
 
-    a{
+    .card{
         width: 70%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
 
-    a{
+    .card{
         width: 30%;
     }
 }

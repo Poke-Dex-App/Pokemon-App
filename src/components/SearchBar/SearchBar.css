@@ -1,11 +1,19 @@
 .buscador {
-    margin-right: 10px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buscador input {
+    width: 350px;
+    height: 25px;
+    border-radius: 7px;
+    font-size: 15px;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
 
     .buscador{
-        margin-right: 50px;
+        margin-right: 0;
     }
 }

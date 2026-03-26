@@ -1,9 +1,43 @@
+:root {
+  --bg: #F5F5F5;
+  --text: #212121;
+  --border: #212121;
+  --bgcard: beige;
+  --bgcardleft: #FDEEE7;
+  --boxshadow: 
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+  --bgmodal: #BF4B4B;
+  --bgform: #316CB4;
+}
+
+.dark {
+  --bg: #3C3C3C;
+  --text: #F5F5F5;
+  --border: #F5F5F5;
+  --bgcard: #1C1C1A;
+  --bgcardleft: #2A1E1A;
+  --boxshadow: 
+    0 12px 35px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  --bgmodal: #1C1C1A;
+  --bgform: #1C1C1A;
+}
+
 
 body {
   margin: 0;
   padding: 0;
   text-align: center;
   font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
+button {
+  border: 1px solid var(--border);
+}
 
+.poke-card {
+  border: 1px solid var(--border);
+}

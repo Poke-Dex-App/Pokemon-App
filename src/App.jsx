@@ -46,7 +46,7 @@ function App() {
       <Header pokemonsArr={allPokemons} setPokemons={setPokemons} />
 
       <Routes>
-        <Route path="/" element={<PokeListPage pokemonsArr={pokemons}></PokeListPage>} />
+        <Route path="/" element={<PokeListPage pokemonsArr={pokemons} allPokemonsArr={allPokemons} setPokemons={setPokemons}></PokeListPage>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/add" element={<AddPokemonPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
         <Route path="/pokemons/:pokeId" element={<PokeDetailsPage getAllPokemons={getAllPokemons}></PokeDetailsPage>} />

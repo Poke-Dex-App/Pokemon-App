@@ -167,7 +167,7 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
 
     return (
 
-        <>
+        <div className="form-add-edit">
             <form onSubmit={handleSubmit}>
 
                 <label>
@@ -414,7 +414,7 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
 
             </form>
 
-        </>
+        </div>
     )
 }
 
