@@ -6,7 +6,11 @@ import axios from 'axios';
 
 function PokemonCard(props) {
 
+    
+
     const addFav = () => {
+
+        const user = auth.currentUser
 
         if (user) {
             user.getIdToken()
