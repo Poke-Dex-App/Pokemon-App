@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
+import './EditPage.css'
 
-function EditPage({pokemonsArr, getAllPokemons}) {
+function EditPage({ pokemonsArr, getAllPokemons }) {
 
     const BASE_URL = import.meta.env.VITE_BASE_URL;
     const navigate = useNavigate()
-    const {pokeId} = useParams()
+    const { pokeId } = useParams()
 
     const [pokemon, setPokemon] = useState(null)
 
@@ -101,39 +102,45 @@ function EditPage({pokemonsArr, getAllPokemons}) {
             .catch((error) => console.log(error))
     }
 
-    const handleAbilities = (e) => {
-        const fullAbility = unicAbilities.find((ability) => ability.description === e.target.value)
+    const handleAbilities = (value, i) => {
+        const fullAbility = unicAbilities.find((ability) => ability.description === value)
+        const newAbilities = [...pokemon.abilities]
+        newAbilities[i] = fullAbility
 
         setPokemon({
             ...pokemon,
-            abilities:[fullAbility]
+            abilities: newAbilities
         })
     }
 
-    const handleMoves = (e) => {
-        const fullMove = unicMoves.find((move) => move.description === e.target.value)
-        
+    const handleMoves = (value, i) => {
+        const fullMove = unicMoves.find((move) => move.description === value)
+        const newMoves = [...pokemon.moves]
+        newMoves[i] = fullMove
+
         setPokemon({
             ...pokemon,
-            moves:[fullMove]
+            moves: newMoves
         })
     }
 
-    const handleType = (e) => {
-        const value = e.target.value
-        
+    const handleType = (value, i) => {
+        const newTypes = [...pokemon.types]
+        newTypes[i] = value
+
         setPokemon({
             ...pokemon,
-            types:[value]
+            types: newTypes
         })
     }
 
-    const handleWeaknesses = (e) => {
-        const value = e.target.value
-        
+    const handleWeaknesses = (value, i) => {
+        const newWeaknesses = [...pokemon.weaknesses]
+        newWeaknesses[i] = value
+
         setPokemon({
             ...pokemon,
-            weaknesses:[value]
+            weaknesses: newWeaknesses
         })
     }
 
@@ -165,29 +172,43 @@ function EditPage({pokemonsArr, getAllPokemons}) {
                     />
                 </label>
 
-                <label>
-                    Habilidades:
-                    <select
-                        name="abilities"
-                        onChange={handleAbilities}
-                    >
-                        {unicAbilities.map((ability) => {
-                            return <option value={ability.description}>{ability.description}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    {pokemon.abilities.map((ab, i) => {
+                        return (
+                            <label key={i}>
+                                Habilidades {i + 1}:
+                                <select
+                                    name="abilities"
+                                    value={ab.description}
+                                    onChange={(e) => { handleAbilities(e.target.value, i) }}
+                                >
+                                    {unicAbilities.map((ability) => {
+                                        return <option value={ability.description}>{ability.description}</option>
+                                    })}
+                                </select>
+                            </label>
+                        )
+                    })}
+                </div>
 
-                <label>
-                    Tipo:
-                    <select
-                        name="type"
-                        onChange={handleType}
-                    >
-                        {unicTypes.map((type) => {
-                            return <option value={type}>{type}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    {pokemon.types.map((tp, i) => {
+                        return (
+                            <label key={i}>
+                                Tipo {i + 1}:
+                                <select
+                                    name="type"
+                                    value={tp}
+                                    onChange={(e) => { handleType(e.target.value, i) }}
+                                >
+                                    {unicTypes.map((type, i) => {
+                                        return <option key={i} value={type}>{type}</option>
+                                    })}
+                                </select>
+                            </label>
+                        )
+                    })}
+                </div>
 
                 <label>
                     Peso:
@@ -209,29 +230,43 @@ function EditPage({pokemonsArr, getAllPokemons}) {
                     />
                 </label>
 
-                <label>
-                    Debilidades:
-                    <select
-                        name="weaknesses"
-                        onChange={handleWeaknesses}
-                    >
-                        {unicWeaknesses.map((weaknes) => {
-                            return <option value={weaknes}>{weaknes}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    {pokemon.weaknesses.map((wk, i) => {
+                        return (
+                            <label key={i}>
+                                Debilidades {i + 1}:
+                                <select
+                                    name="weaknes"
+                                    value={wk}
+                                    onChange={(e) => { handleWeaknesses(e.target.value, i) }}
+                                >
+                                    {unicWeaknesses.map((weaknes) => {
+                                        return <option value={weaknes}>{weaknes}</option>
+                                    })}
+                                </select>
+                            </label>
+                        )
+                    })}
+                </div>
 
-                <label>
-                    Movimientos:
-                    <select
-                        name="moves"
-                        onChange={handleMoves}
-                    >
-                        {unicMoves.map((move) => {
-                            return <option value={move.description}>{move.description}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    {pokemon.moves.map((mv, i) => {
+                        return (
+                            <label key={i}>
+                                Movimiento {i + 1}:
+                                <select
+                                    name="moves"
+                                    value={mv.description}
+                                    onChange={(e) => { handleMoves(e.target.value, i) }}
+                                >
+                                    {unicMoves.map((move) => {
+                                        return <option value={move.description}>{move.description}</option>
+                                    })}
+                                </select>
+                            </label>
+                        )
+                    })}
+                </div>
 
                 <button>UPGRADE</button>
             </form>
