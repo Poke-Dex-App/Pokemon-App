@@ -6,13 +6,14 @@
     transition: 0.3s;
 }
 
+.poke-card img {
+    width: 100px;
+    height: 100px;
+}
 
-/* .poke-card:hover{
-    cursor: pointer;
-    box-shadow: 7px 7px;
-} */
 
-a {
+
+.card {
     text-decoration: none;
     color: inherit;
     display: inline-block;
@@ -44,6 +45,12 @@ a {
 .electric{background-color: #D9B44A;}
 .ground{background-color:#B08968 ;}
 .fairy{background-color: #D68FB3;}
+.ice { background-color: #7EC9D9; }
+.psychic { background-color: #D957A0; }
+.rock { background-color: #A8906E; }
+.steel { background-color: #8FA3B0; }
+.fighting { background-color: #C65A3A; }
+
 
 
 .grass.type-p { background-color: #4e8f58; }
@@ -56,18 +63,23 @@ a {
 .electric.type-p { background-color: #b8962f; }
 .ground.type-p { background-color: #8f6f52; }
 .fairy.type-p { background-color: #b76f95; }
+.ice.type-p { background-color: #5fa7b5; }
+.psychic.type-p { background-color: #a63f78; }
+.rock.type-p { background-color: #7a674f; }
+.steel.type-p { background-color: #6b7c88; }
+.fighting.type-p { background-color: #94432b; }
 
 
 @media (max-width: 767px) {
 
-    a{
+    .card{
         width: 70%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
 
-    a{
+    .card{
         width: 30%;
     }
 }

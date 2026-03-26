@@ -2,15 +2,16 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
 import './PokeListDetails.css'
+import SearchBar from "../../components/SearchBar/SearchBar";
 
-function PokeDetailsPage({getAllPokemons}) {
+function PokeDetailsPage({ getAllPokemons }) {
 
     const BASE_URL = import.meta.env.VITE_BASE_URL;
     const navigate = useNavigate()
 
     const [pokemon, setPokemon] = useState(null)
     const [mostar, setMostar] = useState(false)
-    const [deleteModal, setDeleteModal] = useState(false) 
+    const [deleteModal, setDeleteModal] = useState(false)
 
     const { pokeId } = useParams()
 
@@ -74,17 +75,26 @@ function PokeDetailsPage({getAllPokemons}) {
 
     return (
         <>
-            <h1>Poke Details</h1>
+            <h1>POKEMON DETAILS</h1>
+
             <div id="poke-container">
                 <div className="poke-img">
                     <img src={pokemon.sprites.front} />
-                    <h2>{pokemon.name}</h2>
-                    <button onClick={() => { onShow() }}>Ataques</button>
+                    <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                    <div className="poke-buttons">
+                        <button onClick={() => { onShow() }}>Ataques</button>
+                        <button onClick={() => { setDeleteModal(true) }} id="del">Borrar</button>
+                        <Link to={`/pokemons/edit/${pokeId}`}><button id="edit">Editar</button></Link>
+                    </div>
+
                 </div>
                 <div className="poke-info">
+                    <h1 className="poke-title">
+                        #{String(pokemon.id).padStart(3, "0")} {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                    </h1>
                     <p>{pokemon.description}</p>
                     <div className="specs">
-                        <div>
+                        <div className="poke-physical-stats">
                             <div>
                                 <p><strong>Peso:</strong></p>
                                 <p>{kg} Kg</p>
@@ -93,8 +103,8 @@ function PokeDetailsPage({getAllPokemons}) {
                                 <p><strong>Altura:</strong></p>
                                 <p>{meters} metros</p>
                             </div>
-                            <div>
-                                <button onClick={() => {playSound()}}>Grito</button>
+                            <div className="button-shout">
+                                <button onClick={() => { playSound() }}>Grito</button>
                             </div>
                         </div>
                         <div className="poke-abilities">
@@ -104,22 +114,30 @@ function PokeDetailsPage({getAllPokemons}) {
                             })}
                         </div>
                     </div>
-                    <h1>Tipos</h1>
-                    <div className="types">
-                        {pokemon.types.map((type, i) => {
-                            return <p key={i} className={`type ${type}`}>{type}</p>
-                        })}
+                    <div className="poke-types-weaknesses">
+                        <div className="poke-types">
+                            <h2>Tipos</h2>
+                            <div className="types">
+                                {pokemon.types.map((type, i) => {
+                                    return <p key={i} className={`type ${type}`}>{type}</p>
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="poke-weaknesses">
+                            <h2>Debilidades</h2>
+                            <div className="types">
+                                {pokemon.weaknesses.map((weaknes, i) => {
+                                    return <p key={i} className={`type ${weaknes}`}>{weaknes}</p>
+                                })}
+                            </div>
+                        </div>
+
                     </div>
-                    <h1>Debilidades</h1>
-                    <div className="types">
-                        {pokemon.weaknesses.map((weaknes, i) => {
-                            return <p key={i} className={`type ${weaknes}`}>{weaknes}</p>
-                        })}
-                    </div>
-                    <h1>Estadísticas</h1>
+                    <h2>Estadísticas</h2>
                     <div className="poke-stats">
                         <div>
-                            <h2>Estadísticas Base</h2>
+                            <h3>Estadísticas Base</h3>
                             <p><strong>PS: </strong>{pokemon.stats.base_stats.hp}</p>
                             <p><strong>Ataque: </strong>{pokemon.stats.base_stats.attack}</p>
                             <p><strong>Defensa: </strong>{pokemon.stats.base_stats.defense}</p>
@@ -128,7 +146,7 @@ function PokeDetailsPage({getAllPokemons}) {
                             <p><strong>Velocidad: </strong>{pokemon.stats.base_stats.speed}</p>
                         </div>
                         <div>
-                            <h2>Estadistícas Máximas</h2>
+                            <h3>Estadistícas Máximas</h3>
                             <p><strong>PS: </strong>{pokemon.stats.max_stats.hp}</p>
                             <p><strong>Ataque: </strong>{pokemon.stats.max_stats.attack}</p>
                             <p><strong>Defensa: </strong>{pokemon.stats.max_stats.defense}</p>
@@ -139,7 +157,7 @@ function PokeDetailsPage({getAllPokemons}) {
                     </div>
                     {pokemon.prevolutions &&
                         <>
-                            <h1>Prevoluciones</h1>
+                            <h2>Prevoluciones</h2>
                             {pokemon.prevolutions.map((prevolution, i) => {
                                 return <h3 key={i}>{prevolution}</h3>
                             })}
@@ -147,19 +165,27 @@ function PokeDetailsPage({getAllPokemons}) {
                     }
                     {pokemon.evolutions &&
                         <>
-                            <h1>Evoluciones</h1>
+                            <h2>Evoluciones</h2>
                             {pokemon.evolutions.map((evolution, i) => {
                                 return <h3 key={i}>{evolution}</h3>
                             })}
                         </>
                     }
-                    <h1>Sprites</h1>
-                    <div className="sprites">
-                        <img src={pokemon.sprites.front} />
-                        <img src={pokemon.sprites.back} />
-                        <img src={pokemon.sprites.front_shiny} />
-                        <img src={pokemon.sprites.back_shiny} />
-                    </div>
+                    <h2>Sprites</h2>
+                    {Object.keys(pokemon.sprites).length < 4
+                        ? <div className="sprites">
+                            <img src={pokemon.sprites.front} />
+                            <img src={pokemon.sprites.front} />
+                            <img src={pokemon.sprites.front} />
+                            <img src={pokemon.sprites.front} />
+                        </div>
+                        : <div className="sprites">
+                            <img src={pokemon.sprites.front} />
+                            <img src={pokemon.sprites.back} />
+                            <img src={pokemon.sprites.front_shiny} />
+                            <img src={pokemon.sprites.back_shiny} />
+                        </div>
+                    }
                 </div>
                 {mostar &&
                     <div id="moves">
@@ -192,17 +218,16 @@ function PokeDetailsPage({getAllPokemons}) {
                                 })}
                             </tbody>
                         </table>
-                        <button onClick={() => {onHide()}}>Cerrar</button>
+                        <button onClick={() => { onHide() }}>Cerrar</button>
                     </div>
                 }
-                <button onClick={() => {setDeleteModal(true)}} className="float-buttons" id="del">Borrar</button>
-                <Link to={`/pokemons/edit/${pokeId}`}><button className="float-buttons" id="edit">Editar</button></Link>
+
                 {deleteModal &&
                     <div id="delete">
                         <h2>Deseas eliminar este pokemon</h2>
                         <div id="delete-buttons">
                             <button onClick={onDelete}>Si</button>
-                            <button onClick={() => {setDeleteModal(false)}}>No</button>
+                            <button onClick={() => { setDeleteModal(false) }}>No</button>
                         </div>
                     </div>
                 }

@@ -8,10 +8,10 @@ function SearchBar(props) {
         const value = e.target.value.toLowerCase()
 
         if (value === "") {
-            props.setPokemons(props.pokemonsArr)
+            props.setPokemons(props.allPokemonsArr)
             return
         }
-        const arrayFilteredBySearch = props.pokemonsArr.filter((poke) => {
+        const arrayFilteredBySearch = props.allPokemonsArr.filter((poke) => {
             return poke.name.toLowerCase().includes(value)
         })
         
