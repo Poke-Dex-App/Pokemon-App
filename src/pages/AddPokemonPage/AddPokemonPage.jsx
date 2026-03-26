@@ -10,14 +10,13 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [abilities, setAbilities] = useState([])
+    const [abilities, setAbilities] = useState(["", ""])
     const [imagen, setImagen] = useState("")
-    const [types, setTypes] = useState([])
+    const [types, setTypes] = useState(["", ""])
     const [weight, setWeight] = useState(0)
     const [height, setHeight] = useState(0)
-    const [stats, setStats] = useState("")
-    const [weaknesses, setWeaknesses] = useState([])
-    const [moves, setMoves] = useState([])
+    const [weaknesses, setWeaknesses] = useState(["", "", ""])
+    const [moves, setMoves] = useState(["", "", "", "", ""])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,9 +25,9 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
         const pokeIds = pokemonsArr.map((pokeObj) => {
             return pokeObj.id;
         })
-        console.log(pokeIds)
+
         const maxId = Math.max(...pokeIds)
-        console.log(maxId)
+
         const nextId = maxId + 1
 
         const randomStat = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min).toString();
@@ -51,23 +50,27 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
             speed: randomStat(200, 300),
         };
 
+        const cleanedAbilities = abilities.filter(ability => ability !== "");
+        const cleanedTypes = types.filter(type => type !== "");
+        const cleanedWeaknesses = weaknesses.filter(weaknes => weaknes !== "");
+        const cleanedMoves = moves.filter(move => move !== "");
 
         const newPokemon = {
             name: name,
             description: description,
-            abilities: abilities,
+            abilities: cleanedAbilities,
             sprites: {
                 front: imagen
             },
-            types: types,
+            types: cleanedTypes,
             weight: weight,
             height: height,
             stats: {
                 base_stats: baseStats,
                 max_stats: maxStats
             },
-            weaknesses: weaknesses,
-            moves: moves,
+            weaknesses: cleanedWeaknesses,
+            moves: cleanedMoves,
             id: String(nextId)
         }
 
@@ -82,32 +85,6 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
             })
 
 
-    }
-
-    const handleType = (e) => {
-        const value = e.target.value
-        setTypes([...types, value])
-    }
-
-    const handleWeaknesses = (e) => {
-        const value = e.target.value
-        setWeaknesses([...weaknesses, value])
-    }
-
-    const handleAbilities = (e) => {
-        const value = e.target.value
-
-        const selectedAbility = unicAbilities.find(ability => ability.description === value);
-
-        setAbilities([...abilities, selectedAbility])
-    }
-
-    const handMoves = (e) => {
-        const value = e.target.value
-
-        const selectedMove = unicMoves.find(move => move.description === value);
-
-        setMoves([...moves, selectedMove])
     }
 
     const pokeAbilities = pokemonsArr.map((poke) => {
@@ -158,6 +135,36 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
         return i === firstI
     })
 
+    const handleType = (value, i) => {
+        const newTypes = [...types]
+        newTypes[i] = value
+        setTypes(newTypes)
+    }
+
+    const handleWeaknesses = (value, i) => {
+        const newWeaknesses = [...weaknesses]
+        newWeaknesses[i] = value
+        setWeaknesses(newWeaknesses)
+    }
+
+    const handleAbilities = (value, i) => {
+        const selectedAbility = unicAbilities.find(ability => ability.description === value);
+
+        const newAbilities = [...abilities]
+        newAbilities[i] = selectedAbility || ""
+
+        setAbilities(newAbilities)
+    }
+
+    const handMoves = (value, i) => {
+        const selectedMove = unicMoves.find(move => move.description === value);
+
+        const newMoves = [...moves]
+        newMoves[i] = selectedMove || ""
+
+        setMoves(newMoves)
+    }
+
     return (
 
         <>
@@ -183,18 +190,37 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
                     />
                 </label>
 
-                <label>
-                    Habilidades:
-                    <select
-                        name="abilities"
-                        onChange={handleAbilities}
-                    >
-                        <option>habilidad</option>
-                        {unicAbilities.map((ability) => {
-                            return <option value={ability.description}>{ability.description}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    <label>
+                        Habilidad 1 (Obligatorio):
+                        <select
+                            name="abilities"
+                            required
+                            onChange={(e) => { handleAbilities(e.target.value, 0) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Habilidad--</option>
+                            {unicAbilities.map((ability) => {
+                                return <option value={ability.description}>{ability.description}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Habilidad 2:
+                        <select
+                            name="abilities"
+                            onChange={(e) => { handleAbilities(e.target.value, 1) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Habilidad--</option>
+                            <option value="">Ninguna</option>
+                            {unicAbilities.map((ability) => {
+                                return <option value={ability.description}>{ability.description}</option>
+                            })}
+                        </select>
+                    </label>
+                </div>
 
                 <label>
                     Imagen:
@@ -206,18 +232,37 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
                     />
                 </label>
 
-                <label>
-                    Tipo:
-                    <select
-                        name="type"
-                        onChange={handleType}
-                    >
-                        <option>tipo</option>
-                        {unicTypes.map((type) => {
-                            return <option value={type}>{type}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    <label>
+                        Tipo 1 (Obligatorio):
+                        <select
+                            name="type"
+                            required
+                            onChange={(e) => { handleType(e.target.value, 0) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Tipo--</option>
+                            {unicTypes.map((type) => {
+                                return <option value={type}>{type}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Tipo 2:
+                        <select
+                            name="type"
+                            onChange={(e) => { handleType(e.target.value, 1) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Tipo--</option>
+                            <option value="">Ninguno</option>
+                            {unicTypes.map((type) => {
+                                return <option value={type}>{type}</option>
+                            })}
+                        </select>
+                    </label>
+                </div>
 
                 <label>
                     Peso:
@@ -239,31 +284,129 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
                     />
                 </label>
 
-                <label>
-                    Debilidades:
-                    <select
-                        name="weaknesses"
-                        onChange={handleWeaknesses}
-                    >
-                        <option>debilidad</option>
-                        {unicWeaknesses.map((weaknes) => {
-                            return <option value={weaknes}>{weaknes}</option>
-                        })}
-                    </select>
-                </label>
+                <div className="form-row">
+                    <label>
+                        Debilidad 1 (Obligatorio):
+                        <select
+                            name="weaknesses"
+                            required
+                            onChange={(e) => { handleWeaknesses(e.target.value, 0) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Debilidades--</option>
+                            {unicWeaknesses.map((weaknes) => {
+                                return <option value={weaknes}>{weaknes}</option>
+                            })}
+                        </select>
+                    </label>
 
-                <label>
-                    Movimientos:
-                    <select
-                        name="moves"
-                        onChange={handMoves}
-                    >
-                        <option>movimiento</option>
-                        {unicMoves.map((move) => {
-                            return <option value={move.description}>{move.description}</option>
-                        })}
-                    </select>
-                </label>
+                    <label>
+                        Debilidad 2:
+                        <select
+                            name="weaknesses"
+                            onChange={(e) => { handleWeaknesses(e.target.value, 1) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Debilidades--</option>
+                            <option value="">Ninguna</option>
+                            {unicWeaknesses.map((weaknes) => {
+                                return <option value={weaknes}>{weaknes}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Debilidad 3:
+                        <select
+                            name="weaknesses"
+                            onChange={(e) => { handleWeaknesses(e.target.value, 2) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Debilidades--</option>
+                            <option value="">Ninguna</option>
+                            {unicWeaknesses.map((weaknes) => {
+                                return <option value={weaknes}>{weaknes}</option>
+                            })}
+                        </select>
+                    </label>
+                </div>
+
+                <div className="form-row">
+                    <label>
+                        Movimiento 1:
+                        <select
+                            name="moves"
+                            required
+                            onChange={(e) => { handMoves(e.target.value, 0) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Movimientos--</option>
+                            {unicMoves.map((move) => {
+                                return <option value={move.description}>{move.description}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Movimiento 2:
+                        <select
+                            name="moves"
+                            onChange={(e) => { handMoves(e.target.value, 1) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Movimientos--</option>
+                            <option value="">Ninguno</option>
+                            {unicMoves.map((move) => {
+                                return <option value={move.description}>{move.description}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Movimiento 3:
+                        <select
+                            name="moves"
+                            onChange={(e) => { handMoves(e.target.value, 2) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Movimientos--</option>
+                            <option value="">Ninguno</option>
+                            {unicMoves.map((move) => {
+                                return <option value={move.description}>{move.description}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Movimiento 4:
+                        <select
+                            name="moves"
+                            onChange={(e) => { handMoves(e.target.value, 3) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Movimientos--</option>
+                            <option value="">Ninguno</option>
+                            {unicMoves.map((move) => {
+                                return <option value={move.description}>{move.description}</option>
+                            })}
+                        </select>
+                    </label>
+
+                    <label>
+                        Movimiento 5:
+                        <select
+                            name="moves"
+                            onChange={(e) => { handMoves(e.target.value, 4) }}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>--Movimientos--</option>
+                            <option value="">Ninguno</option>
+                            {unicMoves.map((move) => {
+                                return <option value={move.description}>{move.description}</option>
+                            })}
+                        </select>
+                    </label>
+                </div>
 
                 <button>CREATE</button>
 
