@@ -7,7 +7,6 @@ import axios from 'axios';
 function PokemonCard(props) {
 
     const addFav = () => {
-        const user = auth.currentUser
 
         if (user) {
             user.getIdToken()
@@ -19,10 +18,15 @@ function PokemonCard(props) {
                     axios
                         .get(favURL)
                         .then((pokemon) => {
-                            const data = Object.keys(pokemon.data).map((id) => ({
+
+                            const hasPokemon = pokemon.data;
+                            const pokemonData = hasPokemon ? pokemon.data : {};
+
+                            const data = Object.keys(pokemonData).map((id) => ({
                                     id,
                                     ...pokemon.data[id],
                                 }));
+
 
                             const getData = data.find((poke) => poke.id === props.poke.id)
 

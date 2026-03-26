@@ -13,7 +13,7 @@ function Login() {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                console.log("Sesión iniciada como:", user.displayName);
+                console.log("Sesión iniciada como:", user);
                 navigate('/')
             })
             .catch((error) => {

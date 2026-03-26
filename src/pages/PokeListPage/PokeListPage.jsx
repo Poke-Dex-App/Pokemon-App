@@ -2,7 +2,8 @@ import { useState } from "react";
 import PokemonCard from "../../components/PokemonCard/PokemonCard"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import "./PokeListPage.css"
-import Login from '../../components/Login/Login'
+import Login from "../../components/Login/Login";
+
 
 
 function PokeListPage(props) {
