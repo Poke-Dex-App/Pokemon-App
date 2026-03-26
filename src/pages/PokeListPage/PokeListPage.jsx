@@ -1,9 +1,14 @@
+import { useState } from "react";
 import PokemonCard from "../../components/PokemonCard/PokemonCard"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import "./PokeListPage.css"
 
 
 function PokeListPage(props) {
+
+    const [visibleCount, setVisibleCount] = useState(12)
+
+
     return (
 
         <>
@@ -12,17 +17,35 @@ function PokeListPage(props) {
             <SearchBar allPokemonsArr={props.allPokemonsArr} setPokemons={props.setPokemons} />
             <div>
                 <button onClick={props.normalOrder}>Orden normal</button>
-                <button onClick={props.reverseOrder}>Invertir</button>
-                <button onClick={props.randomOrder}>Aleatorio</button>
+                <button onClick={props.reverseOrder}>Invertir Orden</button>
+                <button onClick={props.randomOrder}>Orden Aleatorio</button>
             </div>
             <div className="pokemons-list-container">
+
                 {props.pokemonsArr &&
-                    props.pokemonsArr.map((poke) => {
-                        return (
+                    props.pokemonsArr
+                        .slice(0, visibleCount)
+                        .map((poke) => (
                             <PokemonCard key={poke.id} poke={poke} />
-                        )
-                    })}
+                        ))
+                }
             </div>
+
+            <div className="buttons-show">
+
+                {visibleCount < props.pokemonsArr.length && (
+                    <button onClick={() => setVisibleCount(visibleCount + 12)}>
+                        Mostrar más
+                    </button>
+
+                )}
+                {visibleCount > 12 && (
+                    <button onClick={() => setVisibleCount(visibleCount - 12)}>
+                        Mostrar menos
+                    </button>
+                )}
+            </div>
+
 
         </>
     )

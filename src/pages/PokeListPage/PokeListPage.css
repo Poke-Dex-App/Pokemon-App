@@ -1,7 +1,14 @@
 .pokemons-list-container{
     display: flex;
-    margin: 50px;
+    margin: 10px 40px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.buttons-show{
+    margin-bottom: 50px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
