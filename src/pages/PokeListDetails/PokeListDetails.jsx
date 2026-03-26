@@ -3,8 +3,10 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
 import './PokeListDetails.css'
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { auth } from '../../../firebase/client'
 
 function PokeDetailsPage({ getAllPokemons }) {
+    const user = auth.currentUser
 
     const BASE_URL = import.meta.env.VITE_BASE_URL;
     const navigate = useNavigate()
@@ -55,22 +57,30 @@ function PokeDetailsPage({ getAllPokemons }) {
     }
 
     const onDelete = () => {
-        axios
-            .get(`${BASE_URL}.json?orderBy="id"&equalTo="${pokeId}"`)
-            .then((response) => {
-                const key = Object.keys(response.data)
+        if (user) {
+            user
+                .getIdToken()
+                .then((idToken) => {
+                    axios
+                        .get(`${BASE_URL}.json?orderBy="id"&equalTo="${pokeId}"`)
+                        .then((response) => {
+                            const key = Object.keys(response.data)
 
-                const firebaseKey = key[0]
+                            const firebaseKey = key[0]
 
-                const deleteURL = `${BASE_URL}/${firebaseKey}.json`
+                            const deleteURL = `${BASE_URL}/${firebaseKey}.json?auth=${idToken}`
 
-                return axios.delete(deleteURL)
-            })
-            .then(() => {
-                getAllPokemons()
-                navigate("/")
-            })
-            .catch((error) => console.log(error))
+                            return axios.delete(deleteURL)
+                        })
+                        .then(() => {
+                            getAllPokemons()
+                            navigate("/")
+                        })
+                        .catch((error) => console.log(error))
+                })
+        } else {
+            alert('Tienes que iniciar sesion')
+        }
     }
 
     return (
