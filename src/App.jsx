@@ -28,7 +28,7 @@ function App() {
         }))
 
         setAllPokemons(data)
-        setPokemons(data)
+        setPokemons([...data].reverse())
       })
       .catch((error) => {
         console.log(error)
@@ -39,6 +39,24 @@ function App() {
     getAllPokemons()
   }, [])
 
+
+
+  const normalOrder = () => {
+    setPokemons(allPokemons)
+  }
+
+  const reverseOrder = () => {
+    setPokemons([...allPokemons].reverse())
+  }
+
+  const randomOrder = () => {
+    const shuffled = [...allPokemons]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    setPokemons(shuffled)
+  }
   return (
 
     <>
@@ -46,11 +64,19 @@ function App() {
       <Header pokemonsArr={allPokemons} setPokemons={setPokemons} />
 
       <Routes>
-        <Route path="/" element={<PokeListPage pokemonsArr={pokemons} allPokemonsArr={allPokemons} setPokemons={setPokemons}></PokeListPage>} />
+        <Route path="/" element={<PokeListPage 
+                                  pokemonsArr={pokemons} 
+                                  allPokemonsArr={allPokemons} 
+                                  setPokemons={setPokemons} 
+                                  normalOrder={normalOrder}
+                                  reverseOrder={reverseOrder}
+                                  randomOrder={randomOrder}
+                                  />} 
+        />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/add" element={<AddPokemonPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
         <Route path="/pokemons/:pokeId" element={<PokeDetailsPage getAllPokemons={getAllPokemons}></PokeDetailsPage>} />
-        <Route path="/pokemons/edit/:pokeId" element={<EditPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons}/>} />
+        <Route path="/pokemons/edit/:pokeId" element={<EditPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
