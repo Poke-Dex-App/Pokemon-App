@@ -19,6 +19,7 @@
     display: inline-block;
     width: 20%;
     margin: 10px;
+    word-break: break-word;
 }
 
 .types{

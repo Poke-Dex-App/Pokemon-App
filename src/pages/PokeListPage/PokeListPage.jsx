@@ -2,6 +2,7 @@ import { useState } from "react";
 import PokemonCard from "../../components/PokemonCard/PokemonCard"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import "./PokeListPage.css"
+import Login from '../../components/Login/Login'
 
 
 function PokeListPage(props) {
@@ -12,7 +13,7 @@ function PokeListPage(props) {
     return (
 
         <>
-
+            <Login></Login>
             <h1>POKEMON LIST {props.pokemonsArr.length}</h1>
             <SearchBar allPokemonsArr={props.allPokemonsArr} setPokemons={props.setPokemons} />
             <div>

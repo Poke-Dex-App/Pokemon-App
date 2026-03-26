@@ -1,6 +1,6 @@
 import { auth } from '../../../firebase/client';
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { signOut } from "firebase/auth";
 
 function Login() {
@@ -35,6 +35,9 @@ function Login() {
         <div>
             <button onClick={handleGithubLogin}>Iniciar sesion con GitHub</button>
             <button onClick={handleLogout}>Log Out</button>
+            <Link to='/favoritos'>
+                <button>Favoritos</button>
+            </Link>
         </div>
     )
 }

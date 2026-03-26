@@ -102,7 +102,9 @@ function PokeDetailsPage({ getAllPokemons }) {
                     <h1 className="poke-title">
                         #{String(pokemon.id).padStart(3, "0")} {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
                     </h1>
-                    <p>{pokemon.description}</p>
+                    <div id="desc">
+                        <p>{pokemon.description}</p>
+                    </div>
                     <div className="specs">
                         <div className="poke-physical-stats">
                             <div>

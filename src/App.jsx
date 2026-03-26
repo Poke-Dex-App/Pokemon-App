@@ -9,7 +9,7 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import AddPokemonPage from "./pages/AddPokemonPage/AddPokemonPage";
 import EditPage from "./pages/EditPage/EditPage";
 import PokeListPage from "./pages/PokeListPage/PokeListPage"
-import Login from './components/Login/Login'
+import FavouritesPage from "./pages/FavouritesPage/FavouritesPage";
 
 function App() {
 
@@ -64,8 +64,6 @@ function App() {
 
       <Header pokemonsArr={allPokemons} setPokemons={setPokemons} />
 
-      <Login></Login>
-
       <Routes>
         <Route path="/" element={<PokeListPage 
                                   pokemonsArr={pokemons} 
@@ -80,6 +78,7 @@ function App() {
         <Route path="/add" element={<AddPokemonPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
         <Route path="/pokemons/:pokeId" element={<PokeDetailsPage getAllPokemons={getAllPokemons}></PokeDetailsPage>} />
         <Route path="/pokemons/edit/:pokeId" element={<EditPage pokemonsArr={pokemons} getAllPokemons={getAllPokemons} />} />
+        <Route path="/favoritos" element={<FavouritesPage />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
 

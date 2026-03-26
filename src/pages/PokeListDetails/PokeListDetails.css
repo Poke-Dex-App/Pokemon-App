@@ -41,6 +41,10 @@
     border-radius: 10px;
 }
 
+#desc{
+    word-break: break-word;
+}
+
 .poke-physical-stats{
     display: flex;
     flex-direction: column;
