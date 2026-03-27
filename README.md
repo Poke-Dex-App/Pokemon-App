@@ -1,6 +1,6 @@
 # 🧢 POKEMON-APP
 
-![DEMO](src/assets/images/Animation.gif)
+![Gameplay](src/assets/images/Animation.gif)
 
 ## 📖 Descripción
 
@@ -9,7 +9,7 @@ Incluye funcionalidades CRUD completas (crear, leer, actualizar y borrar Pokémo
 
 Además, cuenta con características extra como modo oscuro, paginación, filtros y (opcionalmente) autenticación de usuarios para gestionar favoritos.
 
- ## 🚀 Features
+ ## 🚀 Características
 
  ### ✅ MVP
 
