@@ -28,7 +28,7 @@ function App() {
 
         }))
 
-        setAllPokemons(data)
+        setAllPokemons([...data].reverse())
         setPokemons([...data].reverse())
       })
       .catch((error) => {

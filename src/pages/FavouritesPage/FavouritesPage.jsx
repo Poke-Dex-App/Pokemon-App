@@ -3,6 +3,7 @@ import { auth } from "../../../firebase/client"
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react"
 import PokemonCard from "../../components/PokemonCard/PokemonCard"
+import "./FavouritesPage.css"
 
 function FavouritesPage() {
 
@@ -46,7 +47,7 @@ function FavouritesPage() {
     }
 
     return (
-        <>
+        <div className="favourites-container">
             <h1>Favourites Page</h1>
             {pokemons.map((poke) => {
                 return(
@@ -57,7 +58,7 @@ function FavouritesPage() {
                     />
                 )
             })}
-        </>
+        </div>
     )
 }
 
