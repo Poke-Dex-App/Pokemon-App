@@ -1,16 +1,95 @@
-# React + Vite
+# 🧢 POKEMON-APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![DEMO](src/assets/images/Animation.gif)
 
-Currently, two official plugins are available:
+## 📖 Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Pokemon App es una aplicación web desarrollada con React que permite explorar, buscar y gestionar Pokémon.
+Incluye funcionalidades CRUD completas (crear, leer, actualizar y borrar Pokémon) usando Firebase como backend.
 
-## React Compiler
+Además, cuenta con características extra como modo oscuro, paginación, filtros y (opcionalmente) autenticación de usuarios para gestionar favoritos.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ ## 🚀 Features
 
-## Expanding the ESLint configuration
+ ### ✅ MVP
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Homepage con listado de Pokémon
+- Página de detalles
+- Añadir Pokémon (Firebase)
+- Editar Pokémon
+- Eliminar Pokémon con confirmación
+
+### ✨ Extras
+- 🔍 Filtro por nombre
+- 🌙 Modo oscuro / claro
+- 📄 Paginación
+- 🎲 Pokémon aleatorios
+- ❤️ Sistema de favoritos (con login)
+
+## ⚙️ Instalación
+
+1. Clonar el repositorio
+
+   ```
+    git https://github.com/Poke-Dex-App/Pokemon-App.git
+    cd  pokemon-app
+    npm install
+   ```
+
+2.  Ejecutar la app
+
+    ```
+    npm run dev
+    ```
+
+## 🌐 Demo
+
+ https://pokemon-app-three.vercel.app/
+
+
+## 📁 Estructura del proyecto
+
+```
+pokemon-app/
+│
+              
+├── public/                 # Archivos públicos
+├── src/
+│   ├── firebase/           # Configuración de Firebase
+│   │   └── client.js
+│   ├── assets/             # Imagenes del proyecto
+│   │   └── Images
+│   │
+│   ├── components/         # Componentes reutilizables
+│   │   ├── Footer
+│   │   ├── HamburgerMenu
+│   │   ├── Header
+│   │   ├── Loader
+│   │   ├── Login
+│   │   ├── NavBar
+│   │   ├── PokemonCard
+│   │   ├── SearchBar
+│   │   ├── ThemeToggle
+│   │   └── User
+│   │
+│   ├── pages/              # Páginas principales
+│   │   ├── AboutPage
+│   │   ├── AddPokemonPage
+│   │   ├── EditPokemonPage
+│   │   ├── FavouritesPage
+│   │   ├── NotFoundPage
+│   │   ├── PokeListDetails
+│   │   └── PokeListPage
+│   │
+│   └── App.jsx
+│
+├── package.json
+└── README.md
+
+```
+
+### 🛠️ Tech Stack
+- React + Vite
+- React Router
+- Firebase (Database + Auth)
+- Axios
