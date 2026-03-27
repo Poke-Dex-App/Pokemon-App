@@ -1,11 +1,23 @@
 import { auth } from '../../../firebase/client';
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom"
 import { signOut } from "firebase/auth";
+import { useEffect, useState } from 'react';
+
 
 function Login() {
 
     const navigate = useNavigate()
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const handleGithubLogin = () => {
         const provider = new GithubAuthProvider();
@@ -33,11 +45,17 @@ function Login() {
 
     return (
         <div className="dropdown">
-            <button onClick={handleGithubLogin}>Iniciar sesión</button>
-            <button onClick={handleLogout}>Log Out</button>
-            <Link to='/favoritos'>
-                <button>Favoritos</button>
-            </Link>
+
+            {user
+                ? <div>
+                    <button onClick={handleLogout}>Log Out</button>
+                    <Link to='/favoritos'>
+                        <button>Favoritos</button>
+                    </Link>
+                </div>
+                : <button onClick={handleGithubLogin}>Iniciar sesión</button>}
+
+
         </div>
     )
 }
