@@ -5,6 +5,7 @@ import HamburgerMenu from "../HamburgerMenu/HamburgerMenu"
 import SearchBar from "../SearchBar/SearchBar"
 import { Link } from "react-router-dom"
 import ThemeToggle from "../ThemeToggle/ThemeToggle"
+import User from "../User/User"
 
 function Header() {
 
@@ -21,7 +22,12 @@ function Header() {
                 </div>
             </Link>
 
-            <ThemeToggle/>
+            <div className="header-right">
+                <ThemeToggle/>
+                <User/>
+            </div>
+            
+            
 
         </header>
     )

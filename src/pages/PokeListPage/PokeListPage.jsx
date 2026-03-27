@@ -17,7 +17,7 @@ function PokeListPage(props) {
             <Login></Login>
             <h1>POKEMON LIST {props.pokemonsArr.length}</h1>
             <SearchBar allPokemonsArr={props.allPokemonsArr} setPokemons={props.setPokemons} />
-            <div>
+            <div className="buttons-order">
                 <button onClick={props.normalOrder}>Orden normal</button>
                 <button onClick={props.reverseOrder}>Invertir Orden</button>
                 <button onClick={props.randomOrder}>Orden Aleatorio</button>

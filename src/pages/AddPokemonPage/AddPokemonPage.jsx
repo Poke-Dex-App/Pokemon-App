@@ -177,6 +177,7 @@ function AddPokemonPage({ pokemonsArr, getAllPokemons }) {
                         name="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        maxLength={10}
                     />
                 </label>
 

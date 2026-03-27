@@ -159,6 +159,7 @@ function EditPage({ pokemonsArr, getAllPokemons }) {
                         name="name"
                         value={pokemon.name}
                         onChange={handleChange}
+                        maxLength={10}
                     />
                 </label>
 

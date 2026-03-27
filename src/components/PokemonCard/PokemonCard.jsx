@@ -73,7 +73,7 @@ function PokemonCard(props) {
                             return <p className={`type-p ${type}`} key={i}>{type}</p>
                         })}
                     </div>
-                    <button onClick={favFunction}>Fav</button>
+                    <button className='button-fav' onClick={favFunction}>♡</button>
                 </div>
             </Link>
         </>
