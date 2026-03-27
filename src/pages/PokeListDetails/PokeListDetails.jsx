@@ -78,8 +78,6 @@ function PokeDetailsPage({ getAllPokemons }) {
                         })
                         .catch((error) => console.log(error))
                 })
-        } else {
-            alert('Tienes que iniciar sesion')
         }
     }
 
@@ -93,8 +91,13 @@ function PokeDetailsPage({ getAllPokemons }) {
                     <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
                     <div className="poke-buttons">
                         <button onClick={() => { onShow() }}>Ataques</button>
-                        <button onClick={() => { setDeleteModal(true) }} id="del">Borrar</button>
-                        <Link to={`/pokemons/edit/${pokeId}`}><button id="edit">Editar</button></Link>
+                        {user &&
+                            <div className="buttons-edit-delete">
+                                <button onClick={() => { setDeleteModal(true) }} id="del">Borrar</button>
+                                <Link to={`/pokemons/edit/${pokeId}`}><button id="edit">Editar</button></Link>
+                            </div>
+
+                        }
                     </div>
 
                 </div>

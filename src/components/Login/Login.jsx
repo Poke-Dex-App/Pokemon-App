@@ -48,7 +48,9 @@ function Login() {
 
             {user
                 ? <div>
-                    <button onClick={handleLogout}>Log Out</button>
+                    <Link to="/">
+                        <button onClick={handleLogout}>Log Out</button>
+                    </Link>
                     <Link to='/favoritos'>
                         <button>Favoritos</button>
                     </Link>
