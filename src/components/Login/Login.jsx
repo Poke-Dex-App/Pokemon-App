@@ -32,8 +32,8 @@ function Login() {
     };
 
     return (
-        <div>
-            <button onClick={handleGithubLogin}>Iniciar sesion con GitHub</button>
+        <div className="dropdown">
+            <button onClick={handleGithubLogin}>Iniciar sesión</button>
             <button onClick={handleLogout}>Log Out</button>
             <Link to='/favoritos'>
                 <button>Favoritos</button>
