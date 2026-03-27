@@ -7,6 +7,7 @@ header {
     align-items: center;
     justify-content: space-evenly;
     height: 90px;
+    z-index: 1000
 }
 
 .logo {
@@ -14,9 +15,13 @@ header {
     margin-right: 100px;
 }
 
+.header-right{
+    display: flex;
+}
 
 
-@media (max-width: 767px){
+
+@media (max-width: 768px){
     header{
         justify-content: space-between;
     }
@@ -24,6 +29,12 @@ header {
     .logo{
         margin-right: 0;
     }
+    
+    .header-right{
+        margin-right: 20px;
+    }
+    
+    
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -35,5 +46,8 @@ header {
     header{
         justify-content: space-between;
     }
-}
 
+    .header-right{
+        margin-right: 20px;
+    }
+}

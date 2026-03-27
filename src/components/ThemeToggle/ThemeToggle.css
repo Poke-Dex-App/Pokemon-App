@@ -4,7 +4,6 @@
   width: 100px;
   padding: 4px;
   border-radius: 40px;
-  margin-right: 20px;
 
   transform: scale(0.7);
   transform-origin: center;
@@ -147,8 +146,3 @@
   transform: scale(1);
 }
 
-@media (max-width: 768px ){
-    .toggle{
-          margin-right: 20px;
-    }
-}
