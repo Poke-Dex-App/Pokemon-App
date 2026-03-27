@@ -1,6 +1,6 @@
 # 🧢 POKEMON-APP
 
-![Gameplay](src/assets/images/Animation.gif)
+![Gameplay](src/assets/Images/Animation.gif)
 
 ## 📖 Descripción
 
